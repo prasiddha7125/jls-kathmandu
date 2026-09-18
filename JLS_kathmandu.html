@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLS Kathmandu — Study, Work, and Live in Japan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-deep: #a52b34;
+    --indigo-mid: #2E4573;
+    --indigo-pale: #DCE3EF;
+    --paper: #F3ECDD;
+    --paper-dark: #E7DCC3;
+    --vermillion: #C1440E;
+    --vermillion-dark: #9C360A;
+    --ink: #1A1A17;
+    --sage: #6E7A5E;
+    --gray: #6B6559;
+
+    --font-display: 'Shippori Mincho', serif;
+    --font-body: 'Zen Kaku Gothic New', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Hanko seal signature element ---------- */
+  .hanko {
+    width: 44px;
+    height: 44px;
+    border: 2.5px solid var(--vermillion);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .hanko img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hanko.small { width: 55px; height: 55px; border-width: 2px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(243, 236, 221, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--paper-dark);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .nav-brand-text .en {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.02em;
+    color: var(--indigo-deep);
+  }
+
+  .nav-brand-text .jp {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .nav-links a {
+    color: var(--indigo-deep);
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--vermillion);
+    transition: width 0.25s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--vermillion);
+    color: var(--paper);
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--vermillion-dark); }
+
+  .nav-toggle { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 90px 32px 110px;
+    background: var(--indigo-deep);
+    color: var(--paper);
+    overflow: hidden;
+  }
+
+  .hero-vert-text {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    height: 100%;
+    writing-mode: vertical-rl;
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 0.5em;
+    color: rgba(243, 236, 221, 0.14);
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1.5px;
+    background:white;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color:red;
+    font-weight: 800;
+  }
+
+  .hero p.lede {
+    font-size: 17px;
+    color: rgba(243, 236, 221, 0.82);
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--vermillion);
+    color: var(--paper);
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-primary:hover { background: var(--vermillion-dark); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--paper);
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1.5px solid rgba(243, 236, 221, 0.4);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .btn-ghost:hover { border-color: var(--paper); background: rgba(243, 236, 221, 0.06); }
+
+  .hero-stats {
+    display: flex;
+    gap: 34px;
+    margin-top: 52px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(243, 236, 221, 0.18);
+  }
+
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .hero-stat .label {
+    font-size: 12.5px;
+    color: rgba(243, 236, 221, 0.6);
+    margin-top: 4px;
+  }
+
+  .hero-panel {
+    background: var(--indigo-mid);
+    border: 1px solid rgba(243, 236, 221, 0.15);
+    border-radius: 6px;
+    padding: 36px;
+    position: relative;
+  }
+
+  .hero-panel::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 46px; height: 46px;
+    border-top: 2px solid var(--vermillion);
+    border-left: 2px solid var(--vermillion);
+    border-radius: 6px 0 0 0;
+  }
+  .hero-panel::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 46px; height: 46px;
+    border-bottom: 2px solid var(--vermillion);
+    border-right: 2px solid var(--vermillion);
+    border-radius: 0 0 6px 0;
+  }
+
+  .hero-panel h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .hero-panel p {
+    font-size: 13.5px;
+    color: rgba(243, 236, 221, 0.72);
+    margin-bottom: 22px;
+  }
+
+  .panel-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .panel-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .panel-list .dot {
+    width: 7px; height: 7px;
+    background: var(--vermillion);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 100px 32px; }
+
+  .section-head {
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--vermillion);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1.5px;
+    background: var(--vermillion);
+  }
+
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--indigo-deep);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .section-head p {
+    color: var(--gray);
+    font-size: 16px;
+  }
+
+  /* ---------- About ---------- */
+  .about {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-visual {
+    background: var(--indigo-deep);
+    border-radius: 6px;
+    padding: 40px 32px;
+    color: var(--paper);
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .about-visual .mark {
+  width: 60px;
+  height: 60px;
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-visual .mark img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+  .about-team-photo {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 24px 0;
+  }
+
+  .about-team-photo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-visual .quote {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--paper);
+  }
+
+  .about-visual .quote-by {
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(243, 236, 221, 0.6);
+  }
+
+  .about-body p { margin-bottom: 18px; color: #33322C; font-size: 15.5px; }
+
+  .about-facts {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .about-fact {
+    border-left: 2.5px solid var(--vermillion);
+    padding-left: 16px;
+  }
+
+  .about-fact .num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--indigo-deep);
+  }
+  .about-fact .label { font-size: 13.5px; color: var(--gray); margin-top: 2px; }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--paper-dark); }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--indigo-deep);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--paper);
+    padding: 36px 30px;
+    transition: background 0.25s ease;
+  }
+  .service-card:hover { background: #fff; }
+
+  .service-card .idx {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--vermillion);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--indigo-deep);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .service-card p { font-size: 14.5px; color: var(--gray); }
+
+  /* ---------- Process ---------- */
+  .process { background: var(--paper); }
+
+  .process-line {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
+
+  .process-line::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 40px;
+    right: 40px;
+    height: 1.5px;
+    background: var(--paper-dark);
+    z-index: 0;
+  }
+
+  .process-step {
+    position: relative;
+    z-index: 1;
+    padding-right: 20px;
+  }
+
+  .process-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--indigo-deep);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .process-step h4 {
+    font-family: var(--font-display);
+    font-size: 16.5px;
+    color: var(--indigo-deep);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .process-step p { font-size: 13.5px; color: var(--gray); }
+
+  /* ---------- Programs / Why us stats band ---------- */
+  .band {
+    background: var(--indigo-deep);
+    color: var(--paper);
+    padding: 70px 32px;
+  }
+
+  .band-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+
+  .band-stat .num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+  }
+  .band-stat .label {
+    font-size: 13.5px;
+    color: rgba(243, 236, 221, 0.72);
+    margin-top: 8px;
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials { background: var(--paper); }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .test-card {
+    background: var(--paper-dark);
+    border-radius: 6px;
+    padding: 30px;
+    position: relative;
+  }
+
+  .test-card .stamp {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+
+  .test-card p.quote {
+    font-size: 14.5px;
+    color: #33322C;
+    margin-bottom: 22px;
+    padding-right: 20px;
+  }
+
+  .test-person { display: flex; align-items: center; gap: 12px; }
+  .test-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--indigo-deep);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .test-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .test-person .name { font-weight: 700; font-size: 14px; color: var(--indigo-deep); }
+  .test-person .role { font-size: 12.5px; color: var(--gray); }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--paper-dark); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 56px;
+  }
+
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--indigo-deep);
+    margin-bottom: 14px;
+  }
+
+  .contact-info p { font-size: 15px; color: var(--gray); margin-bottom: 30px; }
+
+  .contact-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+  .contact-item .ico {
+    width: 36px; height: 36px;
+    border-radius: 4px;
+    background: white;
+    color: var(--vermillion);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 15px;
+    font-family: var(--font-display);
+  }
+  .contact-item .label { font-size: 12.5px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-item .val { font-size: 15px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+
+  .contact-form {
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 40px;
+    border: 1px solid var(--indigo-pale);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+
+  .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+  .field label { font-size: 13px; font-weight: 700; color: var(--indigo-deep); }
+  .field input, .field select, .field textarea {
+    font-family: var(--font-body);
+    padding: 12px 14px;
+    border: 1.5px solid var(--indigo-pale);
+    border-radius: 3px;
+    font-size: 14.5px;
+    color: var(--ink);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--vermillion); }
+  .field textarea { resize: vertical; min-height: 90px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--vermillion);
+    color: var(--paper);
+    border: none;
+    padding: 15px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .form-submit:hover { background: var(--vermillion-dark); }
+
+  .form-note { font-size: 12.5px; color: var(--gray); margin-top: 12px; text-align: center; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--indigo-deep);
+    color: rgba(243, 236, 221, 0.7);
+    padding: 56px 32px 28px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(243, 236, 221, 0.14);
+  }
+
+  .footer-brand { display: flex; gap: 12px; margin-bottom: 14px; }
+  .footer-brand-text .en { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--paper); }
+  .footer-brand-text .jp { font-size: 10.5px; letter-spacing: 0.25em; color: rgba(243, 236, 221, 0.5); margin-top: 2px; }
+
+  .footer-desc { font-size: 13.5px; max-width: 260px; margin-top: 14px; }
+
+  .footer-col h5 {
+    color: var(--paper);
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 14px; transition: color 0.2s ease; }
+  .footer-col a:hover { color: var(--paper); }
+
+  .footer-bottom {
+    max-width: 1180px;
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: white;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 38px; }
+    .about, .contact-grid { grid-template-columns: 1fr; }
+    .service-grid { grid-template-columns: 1fr 1fr; }
+    .test-grid { grid-template-columns: 1fr; }
+    .process-line { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .process-line::before { display: none; }
+    .band-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hero-vert-text { display: none; }
+    .about-visual { min-height: 0; }
+    .about-team-photo img { height: auto; aspect-ratio: unset; object-fit: contain; background: var(--paper); }
+    .test-card .stamp { position: static; margin-bottom: 16px; }
+    .test-card p.quote { padding-right: 0; }
+  }
+
+  @media (max-width: 560px) {
+    .wrap, section { padding-left: 20px; padding-right: 20px; }
+    .hero { padding: 60px 20px 70px; }
+    .hero h1 { font-size: 30px; }
+    .service-grid, .process-line, .band-grid, .footer-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+    .nav-cta { display: none; }
+    .nav { padding: 14px 16px; }
+  }
+
+  @media (max-width: 400px) {
+    .wrap, section { padding-left: 16px; padding-right: 16px; }
+    .hero { padding: 48px 16px 56px; }
+    .hero h1 { font-size: 26px; }
+    .hero p.lede { font-size: 15.5px; }
+    .btn-primary, .btn-ghost { padding: 13px 22px; font-size: 14px; }
+    .nav-brand-text .en { font-size: 16px; }
+    .hanko.small { width: 44px; height: 44px; }
+    .hero-panel { padding: 24px 20px; }
+    .about-visual { padding: 28px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  .success-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 29, 26, 0.55);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .success-popup-box {
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 36px 32px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .success-popup-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--vermillion);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin: 0 auto 18px;
+  }
+
+  .success-popup-title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .success-popup-text {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 22px;
+  }
+
+  .success-popup-close {
+    width: auto;
+    padding: 10px 28px;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--vermillion);
+    outline-offset: 2px;
+  }
+  
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <a href="#" class="nav-brand" style="text-decoration:none; color:inherit;">
+      <div class="hanko small"><img src="images/logo.jpeg" alt="JLS Kathmandu logo"></div>
+      <div class="nav-brand-text">
+        <span class="en">JLS Kathmandu</span>
+        <span class="jp"> </span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#testimonials">Success Stories</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Book Consultation</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-vert-text">日本への道を、共に歩む</div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Kathmandu → Japan</div>
+      <h1>Your path to study, work, and live in <em>Japan</em> starts here.</h1>
+      <p class="lede">JLS Kathmandu guides Nepali students through every step: language school admission, university placement, visa filing, and life after you land in Japan.</p>
+      <div class="hero-actions">
+        <a href="#contact"><button class="btn-primary">Book a Free Consultation</button></a>
+        <a href="#services"><button class="btn-ghost">View Our Services</button></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">200+</div>
+          <div class="label">Students placed since 2021</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">99%</div>
+          <div class="label">Visa approval rate</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">40+</div>
+          <div class="label">Partner schools in Japan</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <h3>Free Eligibility Check</h3>
+      <p>Answer three questions. We tell you which visa route fits your goals.</p>
+      <ul class="panel-list">
+        <li><span class="dot"></span>Language school (JLPT prep, up to 2 years)</li>
+        <li><span class="dot"></span>Vocational school (Senmon Gakko)</li>
+        <li><span class="dot"></span>University or graduate program</li>
+        <li><span class="dot"></span>Specified Skilled Worker (SSW) visa</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap" style="display:contents;">
+  <div class="about-visual">
+    <div class="mark"><img src="images/logo.jpeg" alt="JLS Kathmandu Logo"></div>
+    <div class="about-team-photo">
+      <img src="images/team.jpg" alt="JLS Kathmandu founding team",>
+    </div>
+    <div>
+      <p class="quote">"We built JLS because getting to Japan takes more than translated documents. It takes someone who has walked the path and knows where students get stuck."</p>
+      <p class="quote-by">— Founding team, JLS Kathmandu</p>
+    </div>
+  </div>
+  <div class="about-body">
+    <div class="eyebrow">About Us</div>
+    <h2 style="font-family:var(--font-display); font-size:32px; color:var(--indigo-deep); font-weight:700; margin-bottom:20px; line-height:1.3;">A decade of sending students from Kathmandu to Japan.</h2>
+    <p>JLS Kathmandu started in 2014 with one goal: make the process of studying in Japan clear and honest. No inflated promises. No hidden fees. Just a straight path from your first inquiry to your first day of class in Japan.</p>
+    <p>Our team includes JLPT-certified instructors, former exchange students, and licensed visa consultants who worked directly with Japanese immigration processes. You get advice from people who know the system, not a call center reading a script.</p>
+    <div class="about-facts">
+      <div class="about-fact">
+        <div class="num">5+ yrs </div>
+        <div class="label">Operating in Kathmandu</div>
+      </div>
+      <div class="about-fact">
+        <div class="num">10</div>
+        <div class="label">Expert consultants on staff</div>
+      </div>
+      <div class="about-fact">
+        <div class="num">40+</div>
+        <div class="label">Partner institutions in Japan</div>
+      </div>
+      <div class="about-fact">
+        <div class="num">99%</div>
+        <div class="label">Visa approval rate</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-head">
+    <div class="eyebrow">What We Do</div>
+    <h2>Every service you need, under one roof.</h2>
+    <p>You get one point of contact from your first meeting to your first paycheck in Japan.</p>
+  </div>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="idx">01</div>
+      <h3>Language School Placement</h3>
+      <p>We match you with accredited Japanese language schools based on your budget, city preference, and intake date. We handle enrollment paperwork directly with the school.</p>
+    </div>
+    <div class="service-card">
+      <div class="idx">02</div>
+      <h3>University & Vocational Admission</h3>
+      <p>We prepare your application, statement of purpose, and academic transcripts for universities and senmon gakko programs across Japan.</p>
+    </div>
+    <div class="service-card">
+      <div class="idx">03</div>
+      <h3>Visa Filing & Documentation</h3>
+      <p>Our licensed consultants file your Certificate of Eligibility and student visa application, and correct errors before immigration sees them.</p>
+    </div>
+    <div class="service-card">
+      <div class="idx">04</div>
+      <h3>JLPT & Japanese Language Prep</h3>
+      <p>Structured classes from N5 to N2, taught by instructors who studied in Japan. You build the language skills schools and employers ask for.</p>
+    </div>
+    <div class="service-card">
+      <div class="idx">05</div>
+      <h3>Housing & Arrival Support</h3>
+      <p>We arrange your first accommodation, airport pickup, and city registration so your first week in Japan is not spent guessing.</p>
+    </div>
+    <div class="service-card">
+      <div class="idx">06</div>
+      <h3>Part-Time Work & Career Guidance</h3>
+      <p>We explain your work-hour limits under a student visa and connect you with employers who regularly hire international students.</p>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-head">
+    <div class="eyebrow">How It Works</div>
+    <h2>Five steps from Kathmandu to campus.</h2>
+    <p>Most students complete the full process in 8 to 12 months, depending on intake dates.</p>
+  </div>
+  <div class="process-line">
+    <div class="process-step">
+      <div class="process-num">1</div>
+      <h4>Free Consultation</h4>
+      <p>We review your academic background and goals, and recommend a visa route.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">2</div>
+      <h4>School Matching</h4>
+      <p>You choose from schools that fit your budget, city, and intake date.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">3</div>
+      <h4>Document Prep</h4>
+      <p>We prepare and check every document required for enrollment and your visa file.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">4</div>
+      <h4>Visa Filing</h4>
+      <p>Our consultants submit your Certificate of Eligibility and student visa application.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">5</div>
+      <h4>Pre-Departure & Arrival</h4>
+      <p>You attend orientation, book housing, and land in Japan with a plan for week one.</p>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="band-grid">
+    <div class="band-stat"><div class="num">200+</div><div class="label">Students placed in Japan</div></div>
+    <div class="band-stat"><div class="num">40+</div><div class="label">Partner schools and universities</div></div>
+    <div class="band-stat"><div class="num">99%</div><div class="label">Visa approval rate</div></div>
+    <div class="band-stat"><div class="num">5+</div><div class="label">Years operating in Kathmandu</div></div>
+  </div>
+</div>
+
+<section class="testimonials" id="testimonials">
+  <div class="section-head">
+    <div class="eyebrow">Success Stories</div>
+    <h2>Students who made the move.</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stamp"><div class="hanko small"><img src="images/logo.jpeg" alt="JLS Kathmandu logo"></div></div>
+      <p class="quote">"A new begining. Grateful to receive my Food Service visa!"</p>
+      <div class="test-person">
+        <div class="test-avatar"><img src="images/Gehendra Rai.jpeg" alt="Rojina Shrestha"></div>
+        <div>
+          <div class="name">Gahendra Rai</div>
+          <div class="role">Language School, Osaka</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stamp"><div class="hanko small"><img src="images/logo.jpeg" alt="JLS Kathmandu logo"></div></div>
+      <p class="quote">“Dreamed of Japan, and now it’s a reality. Happy to received my Food Service visa!”</p>
+      <div class="test-person">
+        <div class="test-avatar"><img src="images/kalika Shahi.jpg" alt="Bibek Tamang"></div>
+        <div>
+          <div class="name">Kalika Shahi</div>
+          <div class="role">Undergraduate, Tokyo</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stamp"><div class="hanko small"><img src="images/logo.jpeg" alt="JLS Kathmandu logo"></div></div>
+      <p class="quote">“From a dream to reality. Japan visa successfully approved. Ready for a new beginning!”</p>
+      <div class="test-person">
+        <div class="test-avatar"><img src="images/Parbati Giri.jpg" alt="Sunita Karki"></div>
+        <div>
+          <div class="name">Parbati Giri</div>
+          <div class="role">Senmon Gakko, Nagoya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="eyebrow">Get In Touch</div>
+      <h3>Talk to a consultant this week.</h3>
+      <p>Book a free 30-minute consultation. We review your background and give you a realistic timeline, not a sales pitch.</p>
+
+      <div class="contact-item">
+        <div class="ico">
+    <i class="fa-solid fa-location-dot"></i>
+</div>
+        <div>
+          <div class="label">Office</div>
+          <div class="val">Sorhakhutte, Kathmandu, Nepal</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ico">
+    <i class="fa-solid fa-phone"></i>
+</div>
+        <div>
+          <div class="label">Phone</div>
+          <div class="val">+977-014977555<br>+977-9861447600</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ico">
+    <i class="fa-solid fa-envelope"></i>
+</div>
+        <div>
+          <div class="label">Email</div>
+          <div class="val">jlskathmandu@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ico">
+    <i class="fa-regular fa-clock"></i>
+</div>
+        <div>
+          <div class="label">Hours</div>
+          <div class="val">Sunday to Friday, 10 AM to 6 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" id="bookingForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" name="fname" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+977 ..." required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="interest">I'm Interested In</label>
+        <select id="interest" name="interest" required>
+          <option value="" disabled selected>Select an option</option>
+          <option>Japanese Language School</option>
+          <option>University Admission</option>
+          <option>Vocational School (Senmon Gakko)</option>
+          <option>Specified Skilled Worker (SSW) Visa</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your academic background and your goal in Japan."></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="formSubmitBtn">Book Free Consultation</button>
+      <p class="form-note" id="formNote">We respond within one business day.</p>
+    </form>
+  </div>
+</section>
+
+<div id="successPopupOverlay" class="success-popup-overlay">
+  <div class="success-popup-box">
+    <div class="success-popup-icon">&#10003;</div>
+    <p class="success-popup-title">Your response is received</p>
+    <p class="success-popup-text">We will contact you within one business day.</p>
+    <button id="successPopupClose" class="form-submit success-popup-close">Close</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var form = e.target;
+    var btn = document.getElementById('formSubmitBtn');
+    var note = document.getElementById('formNote');
+    var popup = document.getElementById('successPopupOverlay');
+    var webAppUrl = 'https://script.google.com/macros/s/AKfycbwwRphe6-2t63o9k87SDaeYFv_svXgDV4VRIvna1KjKpr2BkPtLNTZ1iY-xmcdCFsJznw/exec';
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    var formData = new FormData(form);
+
+    fetch(webAppUrl, {
+      method: 'POST',
+      body: formData
+    })
+      .then(function () {
+        note.textContent = 'Thank you. We received your details and will respond within one business day.';
+        form.reset();
+        popup.style.display = 'flex';
+      })
+      .catch(function () {
+        note.textContent = 'Something went wrong. Please try again or contact us directly.';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Book Free Consultation';
+      });
+  });
+
+  document.getElementById('successPopupClose').addEventListener('click', function () {
+    document.getElementById('successPopupOverlay').style.display = 'none';
+  });
+</script>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <div class="hanko small"><img src="images/logo.jpeg" alt="JLS Kathmandu logo"></div>
+        <div class="footer-brand-text">
+          <span class="en">JLS Kathmandu </span>
+          <span class="jp">カトマンズの日本語学校</span>
+        </div>
+      </div>
+      <p class="footer-desc">We guide students from Kathmandu through school admission, visa filing, and arrival in Japan. Straight advice, no hidden fees.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Language Schools</a></li>
+        <li><a href="#services">University Admission</a></li>
+        <li><a href="#services">Visa Filing</a></li>
+        <li><a href="#services">JLPT Prep</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#testimonials">Success Stories</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+977-014977555">+977-014977555</a></li>
+        <li><a href="mailto:jlskathmandu@gmail.com">jlskathmandu@gmail.com</a></li>
+        <li><a href="#">Sorhakhutte, Kathmandu</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 JLS Kathmandu. All rights reserved.</span>
+    <span>Licensed education consultancy, Kathmandu, Nepal</span>
+  </div>
+</footer>
+
+</body>
+</html>
